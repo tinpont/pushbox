@@ -1,0 +1,24 @@
+{
+  "name": "tinpont/pushbox",
+  "description": "Pushbox is a universal notification push container for apple apns, google gcm, sms etc.",
+  "keywords": ["sms", "apple", "iphone", "ios", "apns", "android", "gcm", "notification", "message", "push", "pusher", "pushbox"],
+  "homepage": "https://github.com/tinpont/pushbox",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Tinpont Liu",
+      "email": "tinpont@qq.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=5.4.0",
+    "zendframework/zendservice-apple-apns": "1.*",
+    "zendframework/zendservice-google-gcm": "1.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Tinpont\\Pushbox\\": "src"
+    }
+  }
+}
