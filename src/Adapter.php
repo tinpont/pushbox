@@ -8,11 +8,18 @@ use Tinpont\Pushbox\Exception\AdapterException;
 abstract class Adapter extends Options {
 
     /**
-     * Push response.
+     * Success push response.
      *
      * @var mixed
      */
-    protected $response;
+    protected $success;
+
+    /**
+     * Fail push response.
+     *
+     * @var mixed
+     */
+    protected $fails;
 
     /**
      * Devices ready to push.
@@ -22,32 +29,27 @@ abstract class Adapter extends Options {
     protected $devices = [];
 
     /**
-     * Get response after pushed.
+     * Get success push response.
      *
      * @return mixed
      */
-    public function getResponse() {
-        return $this->response;
+    public function success() {
+        return $this->success;
     }
 
     /**
-     * Get the first response after pushed.
+     * Get fail push response.
      *
      * @return mixed
      */
-    public function firstResponse() {
-        if (is_array($this->response)) {
-            return count($this->response) ? reset($this->response) : null;
-        }
-
-        return $this->response;
+    public function fails() {
+        return $this->fails;
     }
 
     /**
      * Set devices.
      *
      * @param string|array|Device $devices
-     * @return Adapter
      */
     public function setDevices($devices) {
         $this->devices = [];
@@ -59,8 +61,6 @@ abstract class Adapter extends Options {
         foreach ($devices as $device) {
             $this->addDevice($device);
         }
-
-        return $this;
     }
 
     /**
@@ -75,7 +75,9 @@ abstract class Adapter extends Options {
 
         $token = $device->getToken();
         if (!$this->isValidToken($token)) {
-            throw new AdapterException('Adapter "' . get_class($this) . '" does not support device token "' . $token . '" .');
+            throw new AdapterException(
+                'Adapter "' . get_class($this) . '" does not support device token "' . $token . '" .'
+            );
         }
 
         $this->devices[$device->getToken()] = $device;
@@ -111,7 +113,9 @@ abstract class Adapter extends Options {
      * @return Adapter
      */
     public function to($devices) {
-        return $this->setDevices($devices);
+        $this->setDevices($devices);
+
+        return $this;
     }
 
     /**

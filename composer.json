@@ -12,9 +12,7 @@
   ],
   "minimum-stability": "dev",
   "require": {
-    "php": ">=5.4.0",
-    "zendframework/zendservice-apple-apns": "1.*",
-    "zendframework/zendservice-google-gcm": "1.*"
+    "php": ">=5.4.0"
   },
   "autoload": {
     "psr-4": {

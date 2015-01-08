@@ -3,7 +3,7 @@
 namespace Tinpont\Pushbox;
 
 
-abstract class Options {
+class Options {
 
     /**
      * Options.
@@ -31,6 +31,16 @@ abstract class Options {
     }
 
     /**
+     * Set option by key.
+     *
+     * @param string $key
+     * @param mixed $value
+     */
+    public function setOption($key, $value) {
+        $this->options[$key] = $value;
+    }
+
+    /**
      * Get options.
      *
      * @return array
@@ -52,16 +62,6 @@ abstract class Options {
         }
 
         return $default;
-    }
-
-    /**
-     * Set option by key.
-     *
-     * @param string $key
-     * @param mixed $value
-     */
-    public function setOption($key, $value) {
-        $this->options[$key] = $value;
     }
 
 }
